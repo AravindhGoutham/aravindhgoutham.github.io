@@ -43,7 +43,7 @@
       <header class="major"><h2>Features</h2></header>
       <ul>
         <li>
-          <strong>User Management Automation:</strong> This was the first step of the project. A script was developed to automate the creation and management of user accounts across Linux (Machines A-F) and FreeBSD (Machine X). It handles:
+          <strong>User Management Automation:</strong> This was the first step of the project. A script was developed to automate the creation and management of user accounts across Linux (Machines A–F) and FreeBSD (Machine X). It handles:
           <ul>
             <li>Username generation based on employee names (first initial + last name)</li>
             <li>Uniform password setup across all machines</li>
@@ -55,9 +55,30 @@
             <li>System-wide umask configuration for secure default permissions</li>
           </ul>
         </li>
+
+        <li>
+          <strong>Access Control & Privilege Management:</strong> The second step of the project involved securing administrative access and enabling task-specific permissions based on job roles. Key configurations included:
+          <ul>
+            <li><strong>Password-less SSH Login:</strong> Set up for Pam Beesly, Kelly Kapoor, and Andy Bernard from Machine E to Machine C to streamline access.</li>
+            <li><strong>Custom Sudo Access:</strong> Dwight Schrute was granted full sudo command access on all machines without being added to the sudo/wheel groups, ensuring least-privilege compliance.</li>
+            <li><strong>Controlled Shutdown Access:</strong> Michael Scott can execute timed shutdowns (1–999 minutes) on DMZ machines (B, C, D, F) with appropriate warnings and cancellation abilities.</li>
+            <li><strong>Restricted chown Access:</strong> Jim Halpert can change file ownership on Machine E to any user except root, allowing operational flexibility without elevating risk.</li>
+          </ul>
+        </li>
+
+        <li>
+          <strong>Multi-Site Apache Web Server Configuration:</strong> The third step involved hosting multiple websites from Machine C using Apache. The key components included:
+          <ul>
+            <li><strong>Multi-site Hosting:</strong> Apache served 3 virtual hosts — Dunder Mifflin, Michael Scott Paper Company, and Schrute Farms — with and without “www.” support.</li>
+            <li><strong>Site Permissions:</strong> Pam Beesly, Kelly Kapoor, and Andy Bernard could update the Dunder Mifflin site, while Dwight managed Schrute Farms — without elevated privileges.</li>
+            <li><strong>DocumentRoot Setup:</strong> Each site was hosted under <code>/var/www/html/&lt;site-name&gt;</code> according to ISP specifications.</li>
+            <li><strong>Backup Server:</strong> Machine D acted as a mirror of Machine C, syncing every 5 minutes via rsync for high availability.</li>
+            <li><strong>Disk Usage CGI:</strong> A secure CGI script tracked file count and disk usage for each website, restricted by Apache Auth and accessible only via internal domain.</li>
+          </ul>
+        </li>
+
         <li><strong>Networking & Host Configuration:</strong> Static IP assignments, functional hostnames, and subnet-based segmentation.</li>
         <li><strong>DNS Server Setup:</strong> BIND-based DNS for forward/reverse lookups, recursive resolution, and zone syncing.</li>
-        <li><strong>Apache Web Hosting:</strong> Virtual hosts, mirrored web services, and automated backup web servers.</li>
         <li><strong>User & File Management:</strong> NFS file sharing and centralized user provisioning using Ansible roles.</li>
         <li><strong>Security & Access Control:</strong> PAM policies for password rules and time-based access restrictions.</li>
         <li><strong>Backup & Redundancy:</strong> RAID configurations, NFS automation, and rsync for reliable data protection.</li>
