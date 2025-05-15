@@ -40,7 +40,6 @@
 
       <img src="images/topology.png" alt="Network Topology" style="width:100%;max-width:800px;margin: 20px 0; border-radius: 8px;">
 
-      <!-- Dunder-Mifflin Employees -->
       <header class="major"><h2 style="text-align:center;">Dunder-Mifflin Employees</h2></header>
 
       <div style="text-align:center;">
@@ -57,7 +56,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr><td style="padding:10px; border:1px solid #444;">mscott</td><td>Michael Scott</td><td>Regional Manager</td></tr>
+          <tr><td>mscott</td><td>Michael Scott</td><td>Regional Manager</td></tr>
           <tr><td>jhalpert</td><td>Jim Halpert</td><td>Assistant Regional Manager</td></tr>
           <tr><td>dschrute</td><td>Dwight Schrute</td><td>Assistant to the Regional Manager</td></tr>
           <tr><td>pbeesly</td><td>Pam Beesly</td><td>Receptionist</td></tr>
@@ -72,53 +71,72 @@
           <tr><td>tflenderson</td><td>Toby Flenderson</td><td>Human Resources</td></tr>
           <tr><td>mpalmer</td><td>Meredith Palmer</td><td>Supplier Relations</td></tr>
           <tr><td>cbratton</td><td>Creed Bratton</td><td>Quality Assurance Representative</td></tr>
-          <tr><td>arma2040</td><td>Aravindh Goutham Mahendran</td><td>System Administrator</td></tr>
+          <tr><td>aravindh</td><td>Aravindh Goutham Mahendran</td><td>System Administrator</td></tr>
         </tbody>
       </table>
 
-      <!-- Features section moved below employees -->
       <header class="major"><h2>Features</h2></header>
-      <ul>
-        <li>
-          <strong>User Management Automation:</strong> Automates account creation across Linux and FreeBSD machines including:
-          <ul>
-            <li>Username generation from full names</li>
-            <li>Consistent passwords and home directory setup</li>
-            <li>Group-based directory permissions</li>
-            <li>Sudo access for select users</li>
-            <li>System-wide umask configuration</li>
-          </ul>
-        </li>
 
-        <li>
-          <strong>Access Control & Privilege Management:</strong> Enforces role-based access:
-          <ul>
-            <li>SSH access for Pam, Kelly, Andy</li>
-            <li>Sudo-only access for Dwight (without group)</li>
-            <li>Timed shutdown access for Michael</li>
-            <li>Chown access for Jim (non-root only)</li>
-          </ul>
-        </li>
+      <!-- BEGIN FEATURES PARAGRAPHS -->
+      <section>
+        <h3>User Management Automation</h3>
+        <p>To streamline operations at Dunder Mifflin, a centralized script was developed to automate user account creation and management across Linux (Machines A–F) and FreeBSD (Machine X) systems. Each user is assigned a standardized username, private group, valid shell, and home directory initialized from /etc/skel/. Passwords are synchronized across all systems, and home directories are restricted to individual users. Role-based secondary groups such as managers, sales, and accounting ensure appropriate access controls, while shared directories under /home/ on Machine E are secured with SetGID and proper ownership. Existing user files were migrated with correct permissions, sudo privileges were granted to administrators via group assignment, and umask settings were adjusted network-wide to maintain secure default permissions.</p>
+      </section>
 
-        <li>
-          <strong>Multi-Site Apache Hosting:</strong> Configured on Machine C:
-          <ul>
-            <li>3 virtual sites (Dunder Mifflin, Michael Scott Paper Co., Schrute Farms)</li>
-            <li>Custom DocumentRoots</li>
-            <li>User access mapping (Pam, Andy, Dwight)</li>
-            <li>Backup site mirror via rsync (Machine D)</li>
-            <li>Disk monitoring via authenticated CGI</li>
-          </ul>
-        </li>
+      <section>
+        <h3>Dunder Mifflin Administrative Access Management</h3>
+        <p>Administrative permissions were customized to align with Dunder Mifflin’s operational needs and security guidelines. Pam, Kelly, and Andy were configured for password-less SSH access to Machine C, improving efficiency without compromising safety. Dwight Schrute was granted unrestricted sudo access without group membership, adhering to the principle of least privilege. Michael Scott can schedule system shutdowns across DMZ machines with timed delays, including cancellation capabilities. Jim Halpert’s permissions allow ownership modification on Machine E, excluding the root account. These policies enforce granular control while preserving employee productivity and limiting potential misuse.</p>
+      </section>
 
-        <li><strong>Networking & Host Configuration:</strong> Static IPs and hostnames</li>
-        <li><strong>DNS Server Setup:</strong> Forward/reverse zones via BIND</li>
-        <li><strong>User & File Management:</strong> Ansible-driven NFS sharing</li>
-        <li><strong>Security & Access Control:</strong> PAM rules, ACLs</li>
-        <li><strong>Backup & Redundancy:</strong> RAID, rsync, and cron automation</li>
-        <li><strong>System Automation:</strong> Role-based Ansible deployment</li>
-        <li><strong>Time Sync:</strong> Chrony + NTP setup across all servers</li>
-      </ul>
+      <section>
+        <h3>Multi-Site Apache Web Server Configuration</h3>
+        <p>Apache was deployed on Machine C to host three company websites: dundermifflin.com, michaelscottpapercompany.com, and schrutefarms.com. Each site is reachable with or without the "www" prefix and stored under dedicated DocumentRoots. Access control policies enable Pam, Kelly, and Andy to manage the Dunder Mifflin site, while Dwight manages Schrute Farms. Machine D serves as a synchronized backup using rsync and cron. A CGI script on dundermifflin.com reports disk usage statistics and is secured via HTTP Basic Authentication and domain-based access controls, ensuring transparency while safeguarding sensitive tools.</p>
+      </section>
+
+      <section>
+        <h3>Enhanced User Access and Password Policy Enforcement with PAM</h3>
+        <p>Granular access control was achieved by configuring PAM rules across Linux systems. Only root, the system administrator, Michael, and Dwight can log in to all systems, with broader access allowed on Machine E. DMZ machines such as C, D, and F are restricted to specific departments based on their job roles. Password policies enforced via the pwquality module mandate a minimum of 10 characters, at least two uppercase letters, two digits, and one special character. Login times for most users on Machines C and D are restricted to weekdays between 9 AM and 5 PM, further tightening DMZ access.</p>
+      </section>
+
+      <section>
+        <h3>Configuration Management with Ansible</h3>
+        <p>Ansible was used to implement a robust configuration management system controlled from Machine E. Password-less SSH login was configured to all target nodes (A–F), and inventory groups were created for organization. The custom mkdmuserplay script generated a YAML playbook to replicate users, groups, and credentials across the network using data from passwd and shadow files. Umask configurations were standardized via a managed script, and additional playbooks ensured Apache was updated and configured to auto-start. These tools collectively established a reproducible, scalable, and administrator-friendly network configuration model.</p>
+      </section>
+
+      <section>
+        <h3>Expanding Disk Storage with LVM and RAID</h3>
+        <p>On Machine E, new drives were partitioned using Linux LVM to create flexible storage pools under a volume group named <code>savg</code>. Two logical volumes were allocated: <code>/tmp</code> (1GB, ext4, with noexec and nosuid) and <code>/home</code> (80% of remaining space, xfs, with nodev), each mounted via <code>/etc/fstab</code> to persist across reboots. RAID was configured beneath the volume group to ensure redundancy and resilience. These changes provide scalable and secure disk usage for both temporary and user data while adhering to best practices in filesystem security.</p>
+      </section>
+
+      <section>
+        <h3>Automation of Network Configuration with DHCP and Hostname Updates</h3>
+        <p>DHCP was centralized on Machine A to automate network settings and assign descriptive hostnames. Separate address pools were defined for LAN and DMZ ranges. Hostnames like dns0.dundermifflin.com, web0, and nfs were dynamically assigned to match each server's role. Machines B–F were configured to pull their settings from Machine A. DNS search domains and name server IPs were included in lease options. Once DHCP client settings were updated and systems rebooted, the entire infrastructure reflected accurate, role-based identity and networking information.</p>
+      </section>
+
+      <section>
+        <h3>Accounting Directory Sharing with NFS and Network Time Sync</h3>
+        <p>The accounting department’s need to contribute to the website was addressed by exporting a shared NFS directory from Machine E and mounting it on Machine C. Proper permissions ensured content could be read via the web server but not altered by unauthorized users. Web root and backup configurations were verified, and the automounter was set up for on-demand mounting to optimize resources. In parallel, time synchronization was established using Chrony on Machine A as a Stratum 2 server, with all other machines (including BSD and Debian nodes) syncing via appropriate NTP or systemd-timesyncd services.</p>
+      </section>
+
+      <section>
+        <h3>DNS Server Hosting with BIND</h3>
+        <p>A full-featured DNS infrastructure was implemented using BIND on Machine B (dns0), supporting both forward and reverse zones for LAN and DMZ. CNAME and A records were added for all hosts, with precise TTL, SOA, and zone transfer settings. Split DNS views allowed internal users access to complete records while external clients saw only filtered entries. DHCP settings were updated to use the new DNS infrastructure. Machine F served as a secondary name server with synchronized zones, ensuring redundancy and reliability. Reverse lookup zones completed the configuration for a professional, ISP-grade DNS setup.</p>
+      </section>
+
+      <section>
+        <h3>Firewall Hardening with NFtables</h3>
+        <p>NFtables replaced iptables across the infrastructure, applying default-deny policies and allowing only essential inbound services. Web servers (C and D) accepted HTTP while restricting outbound traffic, only permitting package updates, DNS, NFS, and SSH to known peers. DNS servers (B and F) accepted requests with carefully scoped zone transfer rights. The NFS server (E) allowed access only from authorized subnets. ICMP rules enabled diagnostics while banning Facebook by IP. All machines included SSH access rules and preserved local loopback functionality. Rules were made persistent with nftables.conf and validated through active network tests to ensure functionality and compliance.</p>
+      </section>
+
+      <section>
+        <h3>Reference</h3>
+        <p>
+          For source code, automation scripts, and configuration files, see the GitHub repository:<br>
+          <a href="https://github.com/AravindhGoutham/Linux-System-Administration" target="_blank">
+            github.com/AravindhGoutham/Linux-System-Administration
+          </a>
+        </p>
+      </section>
 
     </section>
   </div>
