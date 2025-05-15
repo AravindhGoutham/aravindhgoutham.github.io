@@ -9,7 +9,6 @@
 </head>
 <body class="is-preload">
 
-<!-- Wrapper -->
 <div id="wrapper">
 
   <!-- Header -->
@@ -41,8 +40,21 @@
 
       <img src="images/topology.png" alt="Network Topology" style="width:100%;max-width:800px;margin: 20px 0; border-radius: 8px;">
 
-      <header class="major"><h2>Key Projects & Features</h2></header>
+      <header class="major"><h2>Features</h2></header>
       <ul>
+        <li>
+          <strong>User Management Automation:</strong> This was the first step of the project. A script was developed to automate the creation and management of user accounts across Linux (Machines A-F) and FreeBSD (Machine X). It handles:
+          <ul>
+            <li>Username generation based on employee names (first initial + last name)</li>
+            <li>Uniform password setup across all machines</li>
+            <li>Creation of home directories with proper permissions and ownership</li>
+            <li>Assignment to secondary groups like managers, sales, and accounting</li>
+            <li>Setup of shared group directories with group ID inheritance</li>
+            <li>Integration of existing user data on Machine E</li>
+            <li>Granting sudo access to administrators</li>
+            <li>System-wide umask configuration for secure default permissions</li>
+          </ul>
+        </li>
         <li><strong>Networking & Host Configuration:</strong> Static IP assignments, functional hostnames, and subnet-based segmentation.</li>
         <li><strong>DNS Server Setup:</strong> BIND-based DNS for forward/reverse lookups, recursive resolution, and zone syncing.</li>
         <li><strong>Apache Web Hosting:</strong> Virtual hosts, mirrored web services, and automated backup web servers.</li>
