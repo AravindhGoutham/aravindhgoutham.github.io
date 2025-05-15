@@ -24,7 +24,7 @@
         <h1>Linux System Administration</h1>
       </header>
       <div class="content">
-        <p>Collection of systems-focused projects involving users, services, automation, and performance tuning.</p>
+        <p>Collection of system-focused projects involving users, services, automation, and performance tuning.</p>
       </div>
     </div>
   </section>
@@ -32,13 +32,27 @@
   <!-- Main -->
   <div id="main">
     <section class="inner">
-      <header class="major"><h2>Projects</h2></header>
+
+      <header class="major"><h2>Project Overview</h2></header>
+      <p>This section showcases a series of Linux system administration projects carried out for a fictional enterprise, <strong>Dunder-Mifflin</strong>. The goal was to build a robust, automated, and secure server infrastructure across multiple operating systems and network segments.</p>
+
+      <header class="major"><h2>Network Topology</h2></header>
+      <p>The network design includes a Rocky Linux router, DNS and web servers across both Rocky and Debian distributions, a file server using AlmaLinux, and a FreeBSD host. Machines are divided between a LAN (10.21.32.0/24) and a DMZ (100.64.N.0/24) segment.</p>
+
+      <img src="images/topology.png" alt="Network Topology" style="width:100%;max-width:800px;margin: 20px 0; border-radius: 8px;">
+
+      <header class="major"><h2>Key Projects & Features</h2></header>
       <ul>
-        <li><strong>NFS + rsync backup automation:</strong> Automated remote backups using systemd timer and bash scripting.</li>
-        <li><strong>User/group administration:</strong> SetGID directories, ACLs, and permission structures for shared folders.</li>
-        <li><strong>Time synchronization:</strong> Configured Chrony/NTP across RHEL and BSD-based systems for precise logging.</li>
-        <li><strong>Service monitoring:</strong> Used `systemctl`, journald, and log rotation to ensure stability and uptime.</li>
+        <li><strong>Networking & Host Configuration:</strong> Static IP assignments, functional hostnames, and subnet-based segmentation.</li>
+        <li><strong>DNS Server Setup:</strong> BIND-based DNS for forward/reverse lookups, recursive resolution, and zone syncing.</li>
+        <li><strong>Apache Web Hosting:</strong> Virtual hosts, mirrored web services, and automated backup web servers.</li>
+        <li><strong>User & File Management:</strong> NFS file sharing and centralized user provisioning using Ansible roles.</li>
+        <li><strong>Security & Access Control:</strong> PAM policies for password rules and time-based access restrictions.</li>
+        <li><strong>Backup & Redundancy:</strong> RAID configurations, NFS automation, and rsync for reliable data protection.</li>
+        <li><strong>System Automation:</strong> Ansible for server hardening, consistency enforcement, and system updates.</li>
+        <li><strong>Time Sync:</strong> NTP/Chrony setup with stratum-based hierarchy across Linux and FreeBSD machines.</li>
       </ul>
+
     </section>
   </div>
 
