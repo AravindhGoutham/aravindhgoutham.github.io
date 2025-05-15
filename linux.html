@@ -60,20 +60,20 @@
           <strong>Access Control & Privilege Management:</strong> The second step of the project involved securing administrative access and enabling task-specific permissions based on job roles. Key configurations included:
           <ul>
             <li><strong>Password-less SSH Login:</strong> Set up for Pam Beesly, Kelly Kapoor, and Andy Bernard from Machine E to Machine C to streamline access.</li>
-            <li><strong>Custom Sudo Access:</strong> Dwight Schrute was granted full sudo command access on all machines without being added to the sudo/wheel groups, ensuring least-privilege compliance.</li>
-            <li><strong>Controlled Shutdown Access:</strong> Michael Scott can execute timed shutdowns (1–999 minutes) on DMZ machines (B, C, D, F) with appropriate warnings and cancellation abilities.</li>
-            <li><strong>Restricted chown Access:</strong> Jim Halpert can change file ownership on Machine E to any user except root, allowing operational flexibility without elevating risk.</li>
+            <li><strong>Custom Sudo Access:</strong> Dwight Schrute was granted full sudo command access on all machines without being added to the sudo/wheel groups.</li>
+            <li><strong>Controlled Shutdown Access:</strong> Michael Scott can execute timed shutdowns (1–999 minutes) on DMZ machines (B, C, D, F) with required user notification and cancellation options.</li>
+            <li><strong>Restricted chown Access:</strong> Jim Halpert can change file ownership on Machine E to any user except root, maintaining flexibility and security.</li>
           </ul>
         </li>
 
         <li>
-          <strong>Multi-Site Apache Web Server Configuration:</strong> The third step involved hosting multiple websites from Machine C using Apache. The key components included:
+          <strong>Multi-Site Apache Web Server Configuration:</strong> The third step involved hosting multiple websites from Machine C using Apache:
           <ul>
-            <li><strong>Multi-site Hosting:</strong> Apache served 3 virtual hosts — Dunder Mifflin, Michael Scott Paper Company, and Schrute Farms — with and without “www.” support.</li>
-            <li><strong>Site Permissions:</strong> Pam Beesly, Kelly Kapoor, and Andy Bernard could update the Dunder Mifflin site, while Dwight managed Schrute Farms — without elevated privileges.</li>
-            <li><strong>DocumentRoot Setup:</strong> Each site was hosted under <code>/var/www/html/&lt;site-name&gt;</code> according to ISP specifications.</li>
-            <li><strong>Backup Server:</strong> Machine D acted as a mirror of Machine C, syncing every 5 minutes via rsync for high availability.</li>
-            <li><strong>Disk Usage CGI:</strong> A secure CGI script tracked file count and disk usage for each website, restricted by Apache Auth and accessible only via internal domain.</li>
+            <li><strong>Multi-site Hosting:</strong> Hosted 3 virtual sites — Dunder Mifflin, Michael Scott Paper Company, and Schrute Farms — with and without “www.” support.</li>
+            <li><strong>Site Permissions:</strong> Specific users were granted update access without elevated privileges: Pam, Kelly, Andy for Dunder Mifflin and Dwight for Schrute Farms.</li>
+            <li><strong>DocumentRoot Setup:</strong> Each site was hosted under <code>/var/www/html/&lt;site-name&gt;</code>.</li>
+            <li><strong>Backup Server:</strong> Machine D acted as a mirror of Machine C, synced every 5 minutes via cron and rsync.</li>
+            <li><strong>Disk Usage CGI:</strong> A CGI script was deployed to monitor site disk usage with Apache authentication and access restriction to internal domains.</li>
           </ul>
         </li>
 
@@ -85,6 +85,38 @@
         <li><strong>System Automation:</strong> Ansible for server hardening, consistency enforcement, and system updates.</li>
         <li><strong>Time Sync:</strong> NTP/Chrony setup with stratum-based hierarchy across Linux and FreeBSD machines.</li>
       </ul>
+
+      <header class="major"><h2>Dunder-Mifflin Employees</h2></header>
+
+      <img src="images/orgchart.png" alt="Dunder-Mifflin Org Chart" style="width:100%;max-width:800px;margin: 20px 0; border-radius: 8px;">
+
+      <table style="width:100%; border-collapse: collapse;">
+        <thead>
+          <tr style="background:#f4f4f4;">
+            <th style="padding:10px; border:1px solid #ccc;">Username</th>
+            <th style="padding:10px; border:1px solid #ccc;">Name</th>
+            <th style="padding:10px; border:1px solid #ccc;">Job Title</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>mscott</td><td>Michael Scott</td><td>Regional Manager</td></tr>
+          <tr><td>jhalpert</td><td>Jim Halpert</td><td>Assistant Regional Manager</td></tr>
+          <tr><td>dschrute</td><td>Dwight Schrute</td><td>Assistant to the Regional Manager</td></tr>
+          <tr><td>pbeesly</td><td>Pam Beesly</td><td>Receptionist</td></tr>
+          <tr><td>abernard</td><td>Andy Bernard</td><td>Regional Director in Charge of Sales</td></tr>
+          <tr><td>plapin</td><td>Phyllis Lapin</td><td>Sales Representative</td></tr>
+          <tr><td>shudson</td><td>Stanley Hudson</td><td>Sales Representative</td></tr>
+          <tr><td>amartin</td><td>Angela Martin</td><td>Senior Accountant</td></tr>
+          <tr><td>omartinez</td><td>Oscar Martinez</td><td>Accountant</td></tr>
+          <tr><td>kmalone</td><td>Kevin Malone</td><td>Accountant</td></tr>
+          <tr><td>dphilbin</td><td>Darryl Philbin</td><td>Warehouse Foreman</td></tr>
+          <tr><td>kkapoor</td><td>Kelly Kapoor</td><td>Customer Service Representative</td></tr>
+          <tr><td>tflenderson</td><td>Toby Flenderson</td><td>Human Resources</td></tr>
+          <tr><td>mpalmer</td><td>Meredith Palmer</td><td>Supplier Relations</td></tr>
+          <tr><td>cbratton</td><td>Creed Bratton</td><td>Quality Assurance Representative</td></tr>
+          <tr><td>your_identikey</td><td>Your Name</td><td>System Administrator</td></tr>
+        </tbody>
+      </table>
 
     </section>
   </div>
