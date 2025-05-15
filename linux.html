@@ -43,63 +43,63 @@
       <header class="major"><h2>Features</h2></header>
       <ul>
         <li>
-          <strong>User Management Automation:</strong> This was the first step of the project. A script was developed to automate the creation and management of user accounts across Linux (Machines A–F) and FreeBSD (Machine X). It handles:
+          <strong>User Management Automation:</strong> Automates account creation across Linux and FreeBSD machines including:
           <ul>
-            <li>Username generation based on employee names (first initial + last name)</li>
-            <li>Uniform password setup across all machines</li>
-            <li>Creation of home directories with proper permissions and ownership</li>
-            <li>Assignment to secondary groups like managers, sales, and accounting</li>
-            <li>Setup of shared group directories with group ID inheritance</li>
-            <li>Integration of existing user data on Machine E</li>
-            <li>Granting sudo access to administrators</li>
-            <li>System-wide umask configuration for secure default permissions</li>
+            <li>Username generation from full names</li>
+            <li>Consistent passwords and home directory setup</li>
+            <li>Group-based directory permissions</li>
+            <li>Sudo access for select users</li>
+            <li>System-wide umask configuration</li>
           </ul>
         </li>
 
         <li>
-          <strong>Access Control & Privilege Management:</strong> The second step of the project involved securing administrative access and enabling task-specific permissions based on job roles. Key configurations included:
+          <strong>Access Control & Privilege Management:</strong> Enforces role-based access:
           <ul>
-            <li><strong>Password-less SSH Login:</strong> Set up for Pam Beesly, Kelly Kapoor, and Andy Bernard from Machine E to Machine C to streamline access.</li>
-            <li><strong>Custom Sudo Access:</strong> Dwight Schrute was granted full sudo command access on all machines without being added to the sudo/wheel groups.</li>
-            <li><strong>Controlled Shutdown Access:</strong> Michael Scott can execute timed shutdowns (1–999 minutes) on DMZ machines (B, C, D, F) with required user notification and cancellation options.</li>
-            <li><strong>Restricted chown Access:</strong> Jim Halpert can change file ownership on Machine E to any user except root, maintaining flexibility and security.</li>
+            <li>SSH access for Pam, Kelly, Andy</li>
+            <li>Sudo-only access for Dwight (without group)</li>
+            <li>Timed shutdown access for Michael</li>
+            <li>Chown access for Jim (non-root only)</li>
           </ul>
         </li>
 
         <li>
-          <strong>Multi-Site Apache Web Server Configuration:</strong> The third step involved hosting multiple websites from Machine C using Apache:
+          <strong>Multi-Site Apache Hosting:</strong> Configured on Machine C:
           <ul>
-            <li><strong>Multi-site Hosting:</strong> Hosted 3 virtual sites — Dunder Mifflin, Michael Scott Paper Company, and Schrute Farms — with and without “www.” support.</li>
-            <li><strong>Site Permissions:</strong> Specific users were granted update access without elevated privileges: Pam, Kelly, Andy for Dunder Mifflin and Dwight for Schrute Farms.</li>
-            <li><strong>DocumentRoot Setup:</strong> Each site was hosted under <code>/var/www/html/&lt;site-name&gt;</code>.</li>
-            <li><strong>Backup Server:</strong> Machine D acted as a mirror of Machine C, synced every 5 minutes via cron and rsync.</li>
-            <li><strong>Disk Usage CGI:</strong> A CGI script was deployed to monitor site disk usage with Apache authentication and access restriction to internal domains.</li>
+            <li>3 virtual sites (Dunder Mifflin, Michael Scott Paper Co., Schrute Farms)</li>
+            <li>Custom DocumentRoots</li>
+            <li>User access mapping (Pam, Andy, Dwight)</li>
+            <li>Backup site mirror via rsync (Machine D)</li>
+            <li>Disk monitoring via authenticated CGI</li>
           </ul>
         </li>
 
-        <li><strong>Networking & Host Configuration:</strong> Static IP assignments, functional hostnames, and subnet-based segmentation.</li>
-        <li><strong>DNS Server Setup:</strong> BIND-based DNS for forward/reverse lookups, recursive resolution, and zone syncing.</li>
-        <li><strong>User & File Management:</strong> NFS file sharing and centralized user provisioning using Ansible roles.</li>
-        <li><strong>Security & Access Control:</strong> PAM policies for password rules and time-based access restrictions.</li>
-        <li><strong>Backup & Redundancy:</strong> RAID configurations, NFS automation, and rsync for reliable data protection.</li>
-        <li><strong>System Automation:</strong> Ansible for server hardening, consistency enforcement, and system updates.</li>
-        <li><strong>Time Sync:</strong> NTP/Chrony setup with stratum-based hierarchy across Linux and FreeBSD machines.</li>
+        <li><strong>Networking & Host Configuration:</strong> Static IPs and hostnames</li>
+        <li><strong>DNS Server Setup:</strong> Forward/reverse zones via BIND</li>
+        <li><strong>User & File Management:</strong> Ansible-driven NFS sharing</li>
+        <li><strong>Security & Access Control:</strong> PAM rules, ACLs</li>
+        <li><strong>Backup & Redundancy:</strong> RAID, rsync, and cron automation</li>
+        <li><strong>System Automation:</strong> Role-based Ansible deployment</li>
+        <li><strong>Time Sync:</strong> Chrony + NTP setup across all servers</li>
       </ul>
 
-      <header class="major"><h2>Dunder-Mifflin Employees</h2></header>
+      <header class="major"><h2 style="text-align:center;">Dunder-Mifflin Employees</h2></header>
 
-      <img src="images/orgchart.png" alt="Dunder-Mifflin Org Chart" style="width:100%;max-width:800px;margin: 20px 0; border-radius: 8px;">
+      <div style="text-align:center;">
+        <img src="images/orgchart.png" alt="Dunder-Mifflin Org Chart" 
+             style="width:100%; max-width:900px; height:auto; margin: 20px auto; display: block; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);" />
+      </div>
 
-      <table style="width:100%; border-collapse: collapse;">
-        <thead>
-          <tr style="background:#f4f4f4;">
-            <th style="padding:10px; border:1px solid #ccc;">Username</th>
-            <th style="padding:10px; border:1px solid #ccc;">Name</th>
-            <th style="padding:10px; border:1px solid #ccc;">Job Title</th>
+      <table style="width:100%; border-collapse: collapse; margin-top: 40px;">
+        <thead style="background: #f0f0f0;">
+          <tr>
+            <th style="padding: 12px; border: 1px solid #ccc; font-size: 1.1em; text-align: left;">Username</th>
+            <th style="padding: 12px; border: 1px solid #ccc; font-size: 1.1em; text-align: left;">Name</th>
+            <th style="padding: 12px; border: 1px solid #ccc; font-size: 1.1em; text-align: left;">Job Title</th>
           </tr>
         </thead>
         <tbody>
-          <tr><td>mscott</td><td>Michael Scott</td><td>Regional Manager</td></tr>
+          <tr><td style="padding:10px; border:1px solid #ccc;">mscott</td><td>Michael Scott</td><td>Regional Manager</td></tr>
           <tr><td>jhalpert</td><td>Jim Halpert</td><td>Assistant Regional Manager</td></tr>
           <tr><td>dschrute</td><td>Dwight Schrute</td><td>Assistant to the Regional Manager</td></tr>
           <tr><td>pbeesly</td><td>Pam Beesly</td><td>Receptionist</td></tr>
@@ -114,7 +114,7 @@
           <tr><td>tflenderson</td><td>Toby Flenderson</td><td>Human Resources</td></tr>
           <tr><td>mpalmer</td><td>Meredith Palmer</td><td>Supplier Relations</td></tr>
           <tr><td>cbratton</td><td>Creed Bratton</td><td>Quality Assurance Representative</td></tr>
-          <tr><td>arma2040</td><td>Aravindh Goutham Mahendran</td><td>System Administrator</td></tr>
+          <tr><td>aravindh</td><td>Aravindh Goutham Mahendran</td><td>System Administrator</td></tr>
         </tbody>
       </table>
 
