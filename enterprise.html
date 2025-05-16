@@ -30,6 +30,7 @@
 
   <!-- Main -->
   <div id="main">
+
     <!-- Projects Section -->
     <section class="inner">
       <header class="major"><h2>Projects</h2></header>
@@ -47,11 +48,42 @@
       </ul>
     </section>
 
-    <!-- Final Enterprise Networking Project -->
+    <!-- Midterm Project Section -->
+    <section class="inner">
+      <header class="major"><h2>Midterm Practical Project</h2></header>
+      <p>Completed a major networking project as part of the midterm practical for <strong>CSCI 5160: Introduction to Enterprise Networks</strong>. This was a highly engaging and collaborative experience involving deep technical implementations and real-world problem-solving alongside peers.</p>
+
+      <p><strong>Technologies & Features Implemented:</strong></p>
+      <ul>
+        <li><strong>VLANs:</strong> Configured separate VLANs for Tesla, SpaceX, Neuralink, and X.com to ensure logical separation of traffic.</li>
+        <li><strong>HSRP:</strong> Deployed Hot Standby Router Protocol for high availability and gateway redundancy.</li>
+        <li><strong>DNS & DHCP:</strong> Centralized services for dynamic IP addressing and name resolution.</li>
+        <li><strong>Wireless DHCP:</strong> Used a Cisco 1800 router to serve DHCP for wireless clients in Tesla and SpaceX.</li>
+        <li><strong>EtherChannel:</strong> Configured PAgP and LACP for link aggregation and fault tolerance.</li>
+        <li><strong>VRF (GalaxNet):</strong> Isolated Group 1 and Group 2 using VRF to create separate routing instances.</li>
+        <li><strong>EIGRP (for VRF):</strong> Deployed within Group 2 to manage internal routing.</li>
+        <li><strong>OSPF (Global Routing):</strong> Used for non-VRF domain to ensure scalability.</li>
+        <li><strong>Routing Manipulation:</strong> Adjusted metrics to optimize route selection between protocols.</li>
+        <li><strong>Redistribution:</strong> Enabled controlled redistribution at OneWeb between routing domains.</li>
+        <li><strong>Stateful NAT:</strong> Provided reliable internet access through NAT failover.</li>
+      </ul>
+
+      <h4>Project Topology:</h4>
+      <div style="display: flex; justify-content: center;">
+        <div style="max-width: 90%;">
+          <img src="images/midterm.png" alt="Midterm Network Topology" style="width: 100%; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);" />
+          <p style="text-align: center; margin-top: 10px;"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Final Project Section -->
     <section class="inner">
       <header class="major"><h2>Final Enterprise Networking Project</h2></header>
       <p>For the final practical in <strong>CSCI 5160: Introduction to Enterprise Networks</strong> at CU Boulder, I tackled a complex, hands-on project that emulated a real-world service provider environment using physical Cisco routers. This challenging lab required deep understanding and practical application of advanced networking concepts, including <strong>MPLS Traffic Engineering</strong>, <strong>IPv6 transition mechanisms</strong>, and <strong>GRE/IPsec site-to-site tunnels</strong>.</p>
+
       <p>The network core was built with <strong>RSVP-based MPLS TE tunnels</strong> using Explicit Route Objects (EROs), bandwidth constraints, and LDP fallback for failover. I deployed <strong>GRE over IPsec tunnels</strong> between customer edge sites running OSPF, configured <strong>IPv6 GRE tunnels secured with IPsec</strong>, and enabled <strong>OSPFv3 for dynamic IPv6 routing</strong>. Dual-stack routing was implemented across the topology, supporting both IPv4 and IPv6 protocols.</p>
+
       <p>Advanced services included <strong>IPv6 Prefix Delegation</strong> with /48 assignments to CE sites, where I configured <strong>DHCPv6</strong> (stateful) and <strong>SLAAC</strong> (stateless) for host address assignment. I also integrated <strong>NAT-PT</strong> to bridge communication between IPv4-only and IPv6-only networks, and routed all external traffic through PE_99 using NAT and a custom public address pool. The project tested both theoretical knowledge and practical configuration skills, reinforcing real-world ISP and enterprise networking design.</p>
 
       <h4>Key Technologies:</h4>
@@ -63,18 +95,20 @@
         <li>Dual-stack Routing, ECMP, Static Routing</li>
       </ul>
 
-     <h4>Project Topology:</h4>
-<div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;">
-  <div style="flex: 1 1 45%; max-width: 45%;">
-    <img src="images/final-topology.png" alt="Final Network Topology" style="width: 100%; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);" />
-    <p style="text-align: center; font-weight: 500; margin-top: 10px;"></p>
-  </div>
-  <div style="flex: 1 1 45%; max-width: 45%;">
-    <img src="images/mpls-twilight-zone.png" alt="MPLS Twilight Zone Whiteboard" style="width: 100%; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);" />
-    <p style="text-align: center; font-weight: 500; margin-top: 10px;"></p>
-  </div>
-</div>
+      <h4>Project Topology:</h4>
+      <div style="display: flex; gap: 20px; flex-wrap: wrap; justify-content: center;">
+        <div style="flex: 1 1 45%; max-width: 45%;">
+          <img src="images/final-topology.png" alt="Final Network Topology" style="width: 100%; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);" />
+          <p style="text-align: center; margin-top: 10px;"></p>
+        </div>
+        <div style="flex: 1 1 45%; max-width: 45%;">
+          <img src="images/mpls-twilight-zone.png" alt="MPLS Twilight Zone Whiteboard" style="width: 100%; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);" />
+          <p style="text-align: center; margin-top: 10px;"></p>
+        </div>
+      </div>
+    </section>
 
+  </div>
 
 </div>
 
