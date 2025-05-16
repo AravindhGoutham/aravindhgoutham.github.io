@@ -31,6 +31,29 @@
       border-radius: 50%;
       box-shadow: 0 4px 12px rgba(0,0,0,0.3);
     }
+
+    #header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .social-links a {
+      margin-left: 15px;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      border: 1px solid white;
+      padding: 6px 12px;
+      border-radius: 6px;
+      transition: background-color 0.3s ease;
+    }
+
+    .social-links a:hover {
+      background-color: white;
+      color: #1a1a1a;
+    }
   </style>
 </head>
 <body class="is-preload">
@@ -41,6 +64,11 @@
     <!-- Header -->
     <header id="header" class="alt">
       <a href="index.html" class="logo"><strong>Aravindh Goutham</strong> <span>Portfolio</span></a>
+      <div class="social-links">
+        <a href="https://www.linkedin.com/in/aravindhgoutham" target="_blank">LinkedIn</a>
+        <a href="https://github.com/AravindhGoutham" target="_blank">GitHub</a>
+        <a href="resume.pdf" target="_blank">Resume</a>
+      </div>
     </header>
 
     <!-- Banner (Intro Section) -->
