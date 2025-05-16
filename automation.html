@@ -33,10 +33,12 @@
     <section class="inner">
       <header class="major"><h2>Projects</h2></header>
       <ul>
-        <li><strong>Flask Web App:</strong> Developed and deployed a resume site using Flask, Gunicorn, and Nginx on AWS EC2 with HTTPS.</li>
-        <li><strong>Ansible Playbooks:</strong> Automated switch configuration, server provisioning, and software installation using YAML roles.</li>
-        <li><strong>Python Tools:</strong> Created CLI utilities for Wi-Fi scanning, TCP port monitoring, and system health checks.</li>
-        <li><strong>CI/CD Pipeline:</strong> Used GitHub Actions to auto-build and deploy code to a cloud instance with rollback support.</li>
+        <li><strong>Flask Web App:</strong> Developed a Flask-based web application to simplify network device configuration, replacing the traditional CLI-based approach. Initial SSH setup is done manually on the devices, after which all configurations can be managed through the application’s GUI. The backend leverages Netmiko and NAPALM Python libraries to automate and apply configurations seamlessly across devices.</li>
+        <li><strong>Jinja2:</strong> Used Jinja2 templating to dynamically generate network device configurations based on variables such as hostname, interfaces, IP addresses, and routing protocols. This approach ensures consistency, reduces manual errors, and allows for scalable and reusable configuration templates across multiple devices and environments.</li>
+        <li><strong>Jenkins:</strong> Integrated Jenkins to automate testing and task execution upon every GitHub push. Each code change triggers predefined test scripts, enabling continuous integration, version control, and unit testing. This setup ensures early detection of issues and maintains reliability across network automation workflows.</li>
+        <li><strong>Monitoring:</strong> Implemented network monitoring using SNMPv2 to collect data from network devices. Prometheus was used as the time-series database to scrape and store the metrics, while Grafana provided dynamic and customizable dashboards for visualizing device performance, traffic, and system health in real time.</li>
+        <li><strong>Troubleshooting:</strong>Designed an automated troubleshooting workflow to enhance network visibility and reduce diagnostic time. The system checks for SSH accessibility across devices, retrieves their current running configurations, and performs a diff analysis to compare against previous configurations. This allows for quick identification of changes and potential issues, making the troubleshooting process faster and more efficient.</li>
+        <li><strong>Netconf:</strong>Implemented NETCONF (Network Configuration Protocol) to manage and automate network device configurations over a secure and structured XML-based interface. NETCONF enables programmatic access to device settings, supports configuration validation and rollback, and integrates seamlessly with modern network automation workflows for improved reliability and consistency.</li>
       </ul>
     </section>
   </div>
