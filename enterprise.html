@@ -30,6 +30,7 @@
 
   <!-- Main -->
   <div id="main">
+    <!-- Projects Section -->
     <section class="inner">
       <header class="major"><h2>Projects</h2></header>
       <ul>
@@ -44,6 +45,27 @@
         <li><strong>IPsec Site-to-Site Tunnels:</strong> Established secure VPN tunnels between remote offices using IPsec protocols.</li>
         <li><strong>Stateful NAT:</strong> Enabled stateful NAT with session tracking for consistent IP translations and return path integrity.</li>
       </ul>
+    </section>
+
+    <!-- Final Enterprise Networking Project -->
+    <section class="inner">
+      <header class="major"><h2>Final Enterprise Networking Project</h2></header>
+      <p>For the final practical in <strong>CSCI 5160: Introduction to Enterprise Networks</strong> at CU Boulder, I tackled a complex, hands-on project that emulated a real-world service provider environment using physical Cisco routers. This challenging lab required deep understanding and practical application of advanced networking concepts, including <strong>MPLS Traffic Engineering</strong>, <strong>IPv6 transition mechanisms</strong>, and <strong>GRE/IPsec site-to-site tunnels</strong>.</p>
+      <p>The network core was built with <strong>RSVP-based MPLS TE tunnels</strong> using Explicit Route Objects (EROs), bandwidth constraints, and LDP fallback for failover. I deployed <strong>GRE over IPsec tunnels</strong> between customer edge sites running OSPF, configured <strong>IPv6 GRE tunnels secured with IPsec</strong>, and enabled <strong>OSPFv3 for dynamic IPv6 routing</strong>. Dual-stack routing was implemented across the topology, supporting both IPv4 and IPv6 protocols.</p>
+      <p>Advanced services included <strong>IPv6 Prefix Delegation</strong> with /48 assignments to CE sites, where I configured <strong>DHCPv6</strong> (stateful) and <strong>SLAAC</strong> (stateless) for host address assignment. I also integrated <strong>NAT-PT</strong> to bridge communication between IPv4-only and IPv6-only networks, and routed all external traffic through PE_99 using NAT and a custom public address pool. The project tested both theoretical knowledge and practical configuration skills, reinforcing real-world ISP and enterprise networking design.</p>
+
+      <h4>Key Technologies:</h4>
+      <ul>
+        <li>MPLS, RSVP-TE, LDP</li>
+        <li>GRE, IPsec, OSPF, OSPFv3</li>
+        <li>NAT-PT, IPv6 Prefix Delegation</li>
+        <li>Stateful & Stateless DHCPv6, SLAAC</li>
+        <li>Dual-stack Routing, ECMP, Static Routing</li>
+      </ul>
+
+      <h4>Project Topology:</h4>
+      <img src="assets/images/final-topology.png" alt="Final Network Topology" style="width:100%; max-width:800px; margin-bottom:20px;" />
+      <img src="assets/images/mpls-twilight-zone.png" alt="MPLS Twilight Zone Whiteboard" style="width:100%; max-width:800px;" />
     </section>
   </div>
 
