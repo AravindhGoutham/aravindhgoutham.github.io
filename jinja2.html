@@ -7,14 +7,38 @@
   <link rel="stylesheet" href="assets/css/main.css" />
   <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
   <style>
+    .banner-flex {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 40px;
+    }
+
+    .text-block {
+      flex: 1;
+      min-width: 300px;
+    }
+
+    .image-block {
+      flex: 0 0 auto;
+      text-align: center;
+    }
+
+    .image-block img {
+      max-width: 200px;
+      height: auto;
+    }
+
     .content p {
       text-transform: none;
       font-size: 1em;
       line-height: 1.7;
     }
+
     ul, ol {
       margin-left: 1.5em;
     }
+
     li {
       margin-bottom: 0.5em;
     }
@@ -30,12 +54,17 @@
 
   <!-- Banner -->
   <section id="banner" class="major">
-    <div class="inner">
-      <header class="major">
-        <h1>Jinja2 Templating for Network Automation</h1>
-      </header>
-      <div class="content">
-        <p>Jinja2 is a powerful templating engine for Python used to generate dynamic configuration files and scripts. It allows you to create reusable templates by inserting variables, conditions, and loops into text files. In network automation, Jinja2 simplifies device configuration by enabling the generation of customized config files based on input data like hostnames, interfaces, and IP addresses, ensuring consistency and reducing human error.</p>
+    <div class="inner banner-flex">
+      <div class="text-block">
+        <header class="major">
+          <h1>Jinja2 Templating for Network Automation</h1>
+        </header>
+        <div class="content">
+          <p>Jinja2 is a powerful templating engine for Python used to generate dynamic configuration files and scripts. It allows you to create reusable templates by inserting variables, conditions, and loops into text files. In network automation, Jinja2 simplifies device configuration by enabling the generation of customized config files based on input data like hostnames, interfaces, and IP addresses, ensuring consistency and reducing human error.</p>
+        </div>
+      </div>
+      <div class="image-block">
+        <img src="images/jinja-logo.png" alt="Jinja2 Logo" />
       </div>
     </div>
   </section>
@@ -66,17 +95,15 @@
         <li><strong>ospf-area:</strong> OSPF area ID associated with the interface (optional).</li>
       </ul>
       <div class="img-wrapper">
-          <img src="images/csv-jinja.png" alt="CSV">
+        <img src="images/csv-jinja.png" alt="CSV Structure" />
       </div>
 
       <header class="major"><h2>Jinja2 Template</h2></header>
       <p>Jinja2 template used to generate interface configurations for network devices based on structured data:</p>
-
-      <!-- Image Placeholder -->
       <div class="img-wrapper">
-          <img src="images/template.png" alt="Jinja2-Template">
+        <img src="images/template.png" alt="Jinja2 Template Example" />
       </div>
-      
+
       <p>Each device in the devices list corresponds to a row from the CSV file. When the CSV is parsed in Python, each row is converted into a dictionary where the column headers become keys. For example:</p>
       <ul>
         <li><code>device.hostname</code> → value from the hostname column</li>
@@ -84,7 +111,6 @@
         <li><code>device.ip-address</code> → pulled from the ip-address column of the CSV</li>
         <li><code>device.subnet</code>, <code>status</code>, <code>ospf-process</code>, and <code>ospf-area</code> are similarly accessed</li>
       </ul>
-      <p>These variables are then used in the template to dynamically fill out configuration values for each interface, making the config generation process highly efficient and scalable.</p>
 
       <header class="major"><h2>Template Render</h2></header>
       <p>The template renderer script automates the creation of individual configuration files for each network device by combining structured data from a CSV file with a reusable Jinja2 template.</p>
