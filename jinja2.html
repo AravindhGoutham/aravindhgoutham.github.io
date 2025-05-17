@@ -1,0 +1,123 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>Jinja2 Templating for Network Automation</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+  <style>
+    .content p {
+      text-transform: none;
+      font-size: 1em;
+      line-height: 1.7;
+    }
+    ul, ol {
+      margin-left: 1.5em;
+    }
+    li {
+      margin-bottom: 0.5em;
+    }
+  </style>
+</head>
+<body class="is-preload">
+<div id="wrapper">
+
+  <!-- Header -->
+  <header id="header" class="alt">
+    <a href="automation.html" class="logo"><strong>← Back</strong> <span>to Automation</span></a>
+  </header>
+
+  <!-- Banner -->
+  <section id="banner" class="major">
+    <div class="inner">
+      <header class="major">
+        <h1>Jinja2 Templating for Network Automation</h1>
+      </header>
+      <div class="content">
+        <p>Jinja2 is a powerful templating engine for Python used to generate dynamic configuration files and scripts. It allows you to create reusable templates by inserting variables, conditions, and loops into text files. In network automation, Jinja2 simplifies device configuration by enabling the generation of customized config files based on input data like hostnames, interfaces, and IP addresses, ensuring consistency and reducing human error.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main -->
+  <div id="main">
+    <section class="inner">
+
+      <header class="major"><h2>Steps to Create Jinja2 Templates for Network Automation</h2></header>
+      <p>The Jinja2 templating system requires four key components to dynamically generate and deploy network device configurations:</p>
+      <ol>
+        <li><strong>CSV File:</strong> A structured CSV file contains device-specific information such as hostname, interface details, IP addresses, and SSH credentials. This acts as the data source for generating personalized configurations for each device.</li>
+        <li><strong>Jinja2 Template:</strong> This is a reusable configuration template with placeholders (e.g., <code>{{ hostname }}</code>, <code>{{ interfaces }}</code>) that represent variable fields. Jinja2 uses this structure to produce consistent and scalable configuration files based on the input data.</li>
+        <li><strong>Template Renderer:</strong> A Python script reads the CSV data and renders the Jinja2 template using it. This script iterates through each device’s data and creates a complete configuration file for each one.</li>
+        <li><strong>Deployment Script with Netmiko:</strong> Finally, a Python script using the Netmiko library establishes an SSH connection to each device and pushes the rendered configuration files. This automates the deployment process and ensures the configurations are applied accurately.</li>
+      </ol>
+
+      <header class="major"><h2>CSV File</h2></header>
+      <p>This CSV file serves as the data source for rendering Jinja2 templates. Each row represents a network device interface configuration, while the header defines the key fields used in the template.</p>
+      <ul>
+        <li><strong>hostname:</strong> Name of the network device (e.g., R1, R2).</li>
+        <li><strong>interface-name:</strong> Type of interface (e.g., gigabitEthernet, fastEthernet, serial).</li>
+        <li><strong>interface-id:</strong> Slot/port identifier of the interface (e.g., 0/0, 1/1).</li>
+        <li><strong>ip-address:</strong> IP address assigned to the interface.</li>
+        <li><strong>subnet:</strong> Subnet mask for the IP address.</li>
+        <li><strong>status:</strong> Interface status (up or down).</li>
+        <li><strong>ospf-process:</strong> OSPF process ID to be used on the interface (optional).</li>
+        <li><strong>ospf-area:</strong> OSPF area ID associated with the interface (optional).</li>
+      </ul>
+      <div class="img-wrapper">
+          <img src="images/csv.png" alt="CSV">
+      </div>
+
+      <header class="major"><h2>Jinja2 Template</h2></header>
+      <p>Jinja2 template used to generate interface configurations for network devices based on structured data:</p>
+
+      <!-- Image Placeholder -->
+      <div class="img-wrapper">
+          <img src="images/template.png" alt="Jinja2-Template">
+      </div>
+      
+      <p>Each device in the devices list corresponds to a row from the CSV file. When the CSV is parsed in Python, each row is converted into a dictionary where the column headers become keys. For example:</p>
+      <ul>
+        <li><code>device.hostname</code> → value from the hostname column</li>
+        <li><code>device.interface-name</code> → value from interface-name</li>
+        <li><code>device.ip-address</code> → pulled from the ip-address column of the CSV</li>
+        <li><code>device.subnet</code>, <code>status</code>, <code>ospf-process</code>, and <code>ospf-area</code> are similarly accessed</li>
+      </ul>
+      <p>These variables are then used in the template to dynamically fill out configuration values for each interface, making the config generation process highly efficient and scalable.</p>
+
+      <header class="major"><h2>Template Render</h2></header>
+      <p>The template renderer script automates the creation of individual configuration files for each network device by combining structured data from a CSV file with a reusable Jinja2 template.</p>
+      <h4>What It Does:</h4>
+      <ol>
+        <li><strong>Parses the CSV File:</strong> The script reads data from a CSV file where each row represents a device's interface and configuration details. Each row is loaded into a Python dictionary.</li>
+        <li><strong>Loads the Jinja2 Template:</strong> A Jinja2 configuration template is used as a blueprint. It contains placeholders like <code>{{ device.hostname }}</code> and <code>{{ device.ip-address }}</code> which will be filled with data from the CSV.</li>
+        <li><strong>Generates Device Configurations:</strong> For every device in the CSV, the script renders a complete configuration using the template and that device's data.</li>
+        <li><strong>Saves Output per Device:</strong> The script creates a separate configuration text file for each device — named using the device’s hostname, e.g., <code>R1_config.txt</code>, <code>R2_config.txt</code>, etc.</li>
+      </ol>
+
+      <header class="major"><h2>Netmiko Deployment Script</h2></header>
+      <p>The Netmiko script is the final stage in the network automation pipeline. It is responsible for connecting to each device via SSH and pushing the configuration files that were generated using the Jinja2 template.</p>
+      <h4>What the Script Does:</h4>
+      <ol>
+        <li><strong>Reads Device SSH Information:</strong> The script reads device connection details (IP address, username, password, device type) from the CSV file or a structured Python list/dictionary. These credentials are used to establish a secure SSH session with each device.</li>
+        <li><strong>Loads the Config File:</strong> For each device, the script opens the corresponding configuration text file generated earlier (e.g., <code>R1_config.txt</code>, <code>R2_config.txt</code>) that contains all the commands prepared via Jinja2.</li>
+        <li><strong>Connects via SSH:</strong> Using the Netmiko library, the script creates an SSH connection to the target device (such as a Cisco router or switch).</li>
+        <li><strong>Sends Configuration Commands:</strong> The config file is split line-by-line and sent as a sequence of commands using Netmiko’s <code>send_config_set()</code> method, which enters configuration mode and applies the changes.</li>
+      </ol>
+
+    </section>
+  </div>
+</div>
+
+<!-- Scripts -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/jquery.scrolly.min.js"></script>
+<script src="assets/js/jquery.scrollex.min.js"></script>
+<script src="assets/js/browser.min.js"></script>
+<script src="assets/js/breakpoints.min.js"></script>
+<script src="assets/js/util.js"></script>
+<script src="assets/js/main.js"></script>
+
+</body>
+</html>
