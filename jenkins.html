@@ -77,12 +77,15 @@
       </ul>
 
       <header class="major"><h2>Pipeline Overview</h2></header>
-      <p>The Jenkins pipeline runs a Python-based NETCONF script on GitHub push events. It:</p>
+      <p>The Jenkins pipeline executes a Python-based NETCONF script triggered by GitHub push events. Before this, SSH must be configured on the devices and NETCONF should be enabled.</p>
       <ul>
         <li>Installs libraries: <code>ncclient</code>, <code>pandas</code>, <code>pylint</code></li>
         <li>Performs lint checks with quality thresholds</li>
         <li>Runs <code>netman_netconf_obj2.py</code></li>
         <li>Executes unit tests via <code>test_netconf.py</code></li>
+        <div class="img-wrapper">
+          <img src="images/jenkins-files.png" alt="Jenkins-browser">
+        </div>
         <li>Sends email alerts based on build status</li>
       </ul>
 
