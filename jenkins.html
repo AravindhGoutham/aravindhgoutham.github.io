@@ -92,19 +92,34 @@
       <header class="major"><h2>Jenkins Pipeline Configuration</h2></header>
       <ol>
         <li><strong>New Item:</strong> Create a new Pipeline project.</li>
+        <div class="img-wrapper">
+          <img src="images/jenkins-task.png" alt="Jenkins-browser">
+        </div>
         <li><strong>General Tab:</strong> Add GitHub repo URL.</li>
         <li><strong>Build Triggers:</strong> Enable "GitHub hook trigger for GITScm polling".</li>
         <li><strong>Pipeline Tab:</strong> Select "Pipeline script from SCM", choose Git, enter repo URL, credentials, and branch (e.g., <code>main</code>).</li>
+        <div class="img-wrapper">
+          <img src="images/jenkins-definition.png" alt="Jenkins-browser">
+        </div>
       </ol>
 
       <header class="major"><h2>GitHub Webhook Integration (Using ngrok)</h2></header>
       <ul>
         <li>Run: <code>ngrok http 8080</code> to get public URL</li>
+        <div class="img-wrapper">
+          <img src="images/ngrok1.png" alt="Jenkins-browser">
+        </div>
+        <div class="img-wrapper">
+          <img src="images/ngrok2.png" alt="Jenkins-browser">
+        </div>
         <li>In GitHub → Settings → Webhooks:</li>
         <ul>
           <li>Payload URL: <code>https://your-ngrok-url/github-webhook/</code></li>
           <li>Content type: <code>application/x-www-form-urlencoded</code></li>
           <li>Events: Push only</li>
+          <div class="img-wrapper">
+          <img src="images/webhooks.png" alt="webhooks">
+        </div>
         </ul>
       </ul>
 
@@ -112,17 +127,32 @@
       <ul>
         <li>Go to: Manage Jenkins → Configure System</li>
         <li>SMTP server: <code>smtp.gmail.com</code></li>
+        <div class="img-wrapper">
+          <img src="images/mail1.png" alt="mail">
+        </div>
         <li>Enable SSL/TLS on port 465</li>
         <li>Enter Gmail credentials, save and test</li>
+        <div class="img-wrapper">
+          <img src="images/mail2.png" alt="Jenkins-browser">
+        </div>
       </ul>
 
       <header class="major"><h2>Trigger and Verify CI/CD</h2></header>
       <p>Once configured, push any code change to the GitHub repository. Jenkins will auto-trigger a new build.</p>
+      <div class="img-wrapper">
+          <img src="images/jenkins-push.png" alt="Jenkins-push">
+        </div>
       <p>Look for this message in console output:</p>
+      <div class="img-wrapper">
+          <img src="images/jenkins-github.png" alt="Jenkins-github">
+        </div>
       <code>Started by GitHub push by AravindhGoutham</code>
 
       <header class="major"><h2>Email on Success</h2></header>
       <p>Upon successful pipeline execution, Jenkins will automatically send an email confirmation to the configured recipient.</p>
+       <div class="img-wrapper">
+          <img src="images/jenkins-job.png" alt="Jenkins-github">
+        </div>
     </section>
   </div>
 
