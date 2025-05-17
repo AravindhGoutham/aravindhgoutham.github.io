@@ -1,0 +1,126 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>Jenkins Pipeline</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+  <style>
+    .content p {
+      text-transform: none;
+      font-size: 0.95em;
+      line-height: 1.6;
+    }
+    ul {
+      margin-left: 1.5em;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body class="is-preload">
+
+<div id="wrapper">
+
+  <!-- Header -->
+  <header id="header" class="alt">
+    <a href="automation.html" class="logo"><strong>← Back</strong> <span>to Automation</span></a>
+  </header>
+
+  <!-- Banner -->
+  <section id="banner" class="major">
+    <div class="inner">
+      <header class="major">
+        <h1>Jenkins CI/CD Pipeline</h1>
+      </header>
+      <div class="content">
+        <p>Jenkins is an open-source automation server widely used for Continuous Integration (CI) and Continuous Delivery (CD). It automates the process of building, testing, and deploying software, enabling frequent code integrations and early issue detection.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main -->
+  <div id="main">
+    <section class="inner">
+      <header class="major"><h2>Key Features of Jenkins</h2></header>
+      <ul>
+        <li><strong>Pipeline as Code:</strong> Define complex workflows using declarative or scripted pipeline syntax.</li>
+        <li><strong>Plugin Ecosystem:</strong> Over 1,800 plugins including GitHub, Docker, Maven, and Slack.</li>
+        <li><strong>SCM Integration:</strong> Seamless Git integration enables automatic build triggers.</li>
+        <li><strong>Extensibility:</strong> Highly customizable for any workflow or tech stack.</li>
+        <li><strong>Distributed Builds:</strong> Build across multiple nodes for improved scalability.</li>
+      </ul>
+
+      <header class="major"><h2>Setting Up Jenkins</h2></header>
+      <ul>
+        <li>Update and upgrade your system:
+          <br><code>sudo apt update && sudo apt upgrade -y</code></li>
+        <li>Install Java (required):
+          <br><code>sudo apt install openjdk-17-jdk -y</code></li>
+        <li>Install Jenkins:
+          <br><code>sudo apt install jenkins -y</code></li>
+        <li>Start Jenkins:
+          <br><code>sudo systemctl enable jenkins && sudo systemctl start jenkins</code></li>
+        <li>Access Jenkins at: <code>http://&lt;your_server_ip&gt;:8080</code></li>
+      </ul>
+
+      <header class="major"><h2>Pipeline Overview</h2></header>
+      <p>The Jenkins pipeline runs a Python-based NETCONF script on GitHub push events. It:</p>
+      <ul>
+        <li>Installs libraries: <code>ncclient</code>, <code>pandas</code>, <code>pylint</code></li>
+        <li>Performs lint checks with quality thresholds</li>
+        <li>Runs <code>netman_netconf_obj2.py</code></li>
+        <li>Executes unit tests via <code>test_netconf.py</code></li>
+        <li>Sends email alerts based on build status</li>
+      </ul>
+
+      <header class="major"><h2>Jenkins Pipeline Configuration</h2></header>
+      <ol>
+        <li><strong>New Item:</strong> Create a new Pipeline project.</li>
+        <li><strong>General Tab:</strong> Add GitHub repo URL.</li>
+        <li><strong>Build Triggers:</strong> Enable "GitHub hook trigger for GITScm polling".</li>
+        <li><strong>Pipeline Tab:</strong> Select "Pipeline script from SCM", choose Git, enter repo URL, credentials, and branch (e.g., <code>main</code>).</li>
+      </ol>
+
+      <header class="major"><h2>GitHub Webhook Integration (Using ngrok)</h2></header>
+      <ul>
+        <li>Run: <code>ngrok http 8080</code> to get public URL</li>
+        <li>In GitHub → Settings → Webhooks:</li>
+        <ul>
+          <li>Payload URL: <code>https://your-ngrok-url/github-webhook/</code></li>
+          <li>Content type: <code>application/x-www-form-urlencoded</code></li>
+          <li>Events: Push only</li>
+        </ul>
+      </ul>
+
+      <header class="major"><h2>Email Notification Configuration</h2></header>
+      <ul>
+        <li>Go to: Manage Jenkins → Configure System</li>
+        <li>SMTP server: <code>smtp.gmail.com</code></li>
+        <li>Enable SSL/TLS on port 465</li>
+        <li>Enter Gmail credentials, save and test</li>
+      </ul>
+
+      <header class="major"><h2>Trigger and Verify CI/CD</h2></header>
+      <p>Once configured, push any code change to the GitHub repository. Jenkins will auto-trigger a new build.</p>
+      <p>Look for this message in console output:</p>
+      <code>Started by GitHub push by AravindhGoutham</code>
+
+      <header class="major"><h2>Email on Success</h2></header>
+      <p>Upon successful pipeline execution, Jenkins will automatically send an email confirmation to the configured recipient.</p>
+    </section>
+  </div>
+
+</div>
+
+<!-- Scripts -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/jquery.scrolly.min.js"></script>
+<script src="assets/js/jquery.scrollex.min.js"></script>
+<script src="assets/js/browser.min.js"></script>
+<script src="assets/js/breakpoints.min.js"></script>
+<script src="assets/js/util.js"></script>
+<script src="assets/js/main.js"></script>
+
+</body>
+</html>
