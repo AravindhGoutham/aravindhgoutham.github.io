@@ -11,8 +11,17 @@
       text-transform: none;
       letter-spacing: normal;
       font-size: 0.85em;
-      line-height: 1.4;
+      line-height: 1.6;
       color: #ccc;
+    }
+    .section-title {
+      text-align: center;
+      margin: 3em 0 1em 0;
+    }
+    .section-title h2 {
+      font-size: 2em;
+      font-weight: 700;
+      margin-bottom: 0.5em;
     }
   </style>
 </head>
@@ -39,6 +48,12 @@
 
   <!-- Main -->
   <div id="main">
+
+    <!-- Section Title -->
+    <div class="section-title">
+      <h2>Tools & Technologies</h2>
+    </div>
+
     <section id="one" class="tiles">
 
       <!-- Flask Web App -->
@@ -48,7 +63,7 @@
         </span>
         <header class="major">
           <h3>Flask Web App</h3>
-          <p class="tile-description">Developed a GUI-based Flask application that simplifies device configurations. Uses Netmiko and NAPALM libraries for backend automation, replacing traditional CLI operations.</p>
+          <p class="tile-description">Developed a GUI-based Flask application that simplifies device configuration. It uses Netmiko and NAPALM libraries to automate the backend, replacing traditional CLI workflows.</p>
         </header>
       </article>
 
@@ -59,7 +74,7 @@
         </span>
         <header class="major">
           <h3>Jinja2 Templating</h3>
-          <p class="tile-description">Dynamic device configs are generated using Jinja2 templates. Ensures consistency across environments, reducing manual error and improving deployment efficiency.</p>
+          <p class="tile-description">Dynamic configurations are generated using Jinja2 templates based on device variables. This ensures consistency, eliminates manual errors, and makes deployments scalable.</p>
         </header>
       </article>
 
@@ -70,7 +85,7 @@
         </span>
         <header class="major">
           <h3><a href="jenkins.html" class="link">Jenkins</a></h3>
-          <p class="tile-description">Integrated Jenkins for CI/CD. Every GitHub push triggers testing, version control, and automated deployments. Click to view detailed Jenkins pipeline setup →</p>
+          <p class="tile-description">Jenkins is used for continuous integration and delivery. Each GitHub push triggers tests and configuration jobs, improving automation reliability. Click to learn more →</p>
         </header>
       </article>
 
@@ -81,7 +96,7 @@
         </span>
         <header class="major">
           <h3>Monitoring</h3>
-          <p class="tile-description">Implemented SNMP-based monitoring with Prometheus and Grafana. Dashboards visualize performance metrics and traffic in real time.</p>
+          <p class="tile-description">Implemented SNMP-based monitoring with Prometheus and Grafana. This setup collects and visualizes device performance, resource usage, and network traffic in real time.</p>
         </header>
       </article>
 
@@ -92,7 +107,7 @@
         </span>
         <header class="major">
           <h3>Troubleshooting</h3>
-          <p class="tile-description">Created automated scripts to fetch and diff configs across devices. Helps quickly detect anomalies and configuration drifts.</p>
+          <p class="tile-description">Scripts were built to fetch and compare current vs. previous configurations. This helps identify changes, improve visibility, and reduce troubleshooting time.</p>
         </header>
       </article>
 
@@ -103,7 +118,7 @@
         </span>
         <header class="major">
           <h3>NETCONF</h3>
-          <p class="tile-description">Used NETCONF to manage network devices over a secure XML-based interface, allowing configuration validation and rollback.</p>
+          <p class="tile-description">NETCONF enables remote configuration using a structured XML interface. It supports rollback, validation, and integrates cleanly into automated workflows.</p>
         </header>
       </article>
 
@@ -117,6 +132,7 @@
         <a href="https://github.com/AravindhGoutham" target="_blank">github.com/AravindhGoutham</a>
       </p>
     </section>
+
   </div>
 
 </div>
