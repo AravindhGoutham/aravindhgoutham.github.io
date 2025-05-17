@@ -16,6 +16,26 @@
       margin-left: 1.5em;
       line-height: 1.6;
     }
+    .banner-flex {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 30px;
+    }
+    .text-block {
+      flex: 1;
+      min-width: 300px;
+    }
+    .logo-block {
+      flex: 0 0 auto;
+      text-align: center;
+    }
+    .logo-img {
+      max-width: 250px;
+      height: auto;
+      border-radius: 10px;
+    }
   </style>
 </head>
 <body class="is-preload">
@@ -29,12 +49,17 @@
 
   <!-- Banner -->
   <section id="banner" class="major">
-    <div class="inner">
-      <header class="major">
-        <h1>Jenkins CI/CD Pipeline</h1>
-      </header>
-      <div class="content">
-        <p>Jenkins is an open-source automation server widely used for Continuous Integration (CI) and Continuous Delivery (CD). It automates the process of building, testing, and deploying software, enabling frequent code integrations and early issue detection.</p>
+    <div class="inner banner-flex">
+      <div class="text-block">
+        <header class="major">
+          <h1>Jenkins CI/CD Pipeline</h1>
+        </header>
+        <div class="content">
+          <p>Jenkins is an open-source automation server widely used for Continuous Integration (CI) and Continuous Delivery (CD). It automates the process of building, testing, and deploying software, enabling frequent code integrations and early issue detection.</p>
+        </div>
+      </div>
+      <div class="logo-block">
+        <img src="images/jenkins-logo.png" alt="Jenkins Logo" class="logo-img">
       </div>
     </div>
   </section>
@@ -64,7 +89,7 @@
         <div class="img-wrapper">
           <img src="images/setup-jenkins.png" alt="Setting up Jenkins Screenshot">
         </div>
-        
+
         <li>Access Jenkins at: <code>http://&lt;your_server_ip&gt;:8080</code></li>
         <div class="img-wrapper">
           <img src="images/jenkins-login.png" alt="Jenkins-browser">
@@ -118,8 +143,8 @@
           <li>Content type: <code>application/x-www-form-urlencoded</code></li>
           <li>Events: Push only</li>
           <div class="img-wrapper">
-          <img src="images/webhooks.png" alt="webhooks">
-        </div>
+            <img src="images/webhooks.png" alt="webhooks">
+          </div>
         </ul>
       </ul>
 
@@ -140,30 +165,32 @@
       <header class="major"><h2>Trigger and Verify CI/CD</h2></header>
       <p>Once configured, push any code change to the GitHub repository. Jenkins will auto-trigger a new build.</p>
       <div class="img-wrapper">
-          <img src="images/jenkins-push.png" alt="Jenkins-push">
-        </div>
+        <img src="images/jenkins-push.png" alt="Jenkins-push">
+      </div>
       <p>Look for this message in console output:</p>
       <div class="img-wrapper">
-          <img src="images/jenkins-github.png" alt="Jenkins-github">
-        </div>
+        <img src="images/jenkins-github.png" alt="Jenkins-github">
+      </div>
       <code>Started by GitHub push by AravindhGoutham</code>
 
       <header class="major"><h2>Email on Success</h2></header>
       <p>Upon successful pipeline execution, Jenkins will automatically send an email confirmation to the configured recipient.</p>
-       <div class="img-wrapper">
-          <img src="images/jenkins-job.png" alt="Jenkins-github">
-        </div>
+      <div class="img-wrapper">
+        <img src="images/jenkins-job.png" alt="Jenkins-github">
+      </div>
+    </section>
+
+    <section class="inner">
+      <header class="major"><h3>Reference</h3></header>
+      <p>
+        For source code, automation scripts, and configuration files, see the GitHub repository:<br>
+        <a href="https://github.com/AravindhGoutham/Netconf-Jenkins" target="_blank">
+          github.com/AravindhGoutham/Netconf-Jenkins
+        </a>
+      </p>
     </section>
   </div>
-    <section>
-        <h3>Reference</h3>
-        <p>
-          For source code, automation scripts, and configuration files, see the GitHub repository:<br>
-          <a href="https://github.com/AravindhGoutham/Netconf-Jenkins" target="_blank">
-            github.com/AravindhGoutham/Netconf-Jenkins
-          </a>
-        </p>
-      </section>
+
 </div>
 
 <!-- Scripts -->
