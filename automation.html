@@ -6,6 +6,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
   <link rel="stylesheet" href="assets/css/main.css" />
   <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+  <style>
+    .tile-description {
+      text-transform: none;
+      letter-spacing: normal;
+      font-size: 0.85em;
+      line-height: 1.4;
+      color: #ccc;
+    }
+  </style>
 </head>
 <body class="is-preload">
 
@@ -30,26 +39,86 @@
 
   <!-- Main -->
   <div id="main">
-    <section class="inner">
-      <header class="major"><h2>Tools & Technologies</h2></header>
-      <ul>
-        <li><strong>Flask Web App:</strong> Developed a Flask-based web application to simplify network device configuration, replacing the traditional CLI-based approach. Initial SSH setup is done manually on the devices, after which all configurations can be managed through the application’s GUI. The backend leverages Netmiko and NAPALM Python libraries to automate and apply configurations seamlessly across devices.</li>
-        <li><strong>Jinja2:</strong> Used Jinja2 templating to dynamically generate network device configurations based on variables such as hostname, interfaces, IP addresses, and routing protocols. This approach ensures consistency, reduces manual errors, and allows for scalable and reusable configuration templates across multiple devices and environments.</li>
-        <li><strong>Jenkins:</strong> Integrated Jenkins to automate testing and task execution upon every GitHub push. Each code change triggers predefined test scripts, enabling continuous integration, version control, and unit testing. This setup ensures early detection of issues and maintains reliability across network automation workflows.</li>
-        <li><strong>Monitoring:</strong> Implemented network monitoring using SNMPv2 to collect data from network devices. Prometheus was used as the time-series database to scrape and store the metrics, while Grafana provided dynamic and customizable dashboards for visualizing device performance, traffic, and system health in real time.</li>
-        <li><strong>Troubleshooting:</strong> Designed an automated troubleshooting workflow to enhance network visibility and reduce diagnostic time. The system checks for SSH accessibility across devices, retrieves their current running configurations, and performs a diff analysis to compare against previous configurations. This allows for quick identification of changes and potential issues, making the troubleshooting process faster and more efficient.</li>
-        <li><strong>Netconf:</strong> Implemented NETCONF (Network Configuration Protocol) to manage and automate network device configurations over a secure and structured XML-based interface. NETCONF enables programmatic access to device settings, supports configuration validation and rollback, and integrates seamlessly with modern network automation workflows for improved reliability and consistency.</li>
-      </ul>
-      
-      <header><h2>Reference</h2></header>
-      <div style="line-height: 1.3; margin-bottom: 2px;">
-        <p style="margin: 0;">For source code, automation scripts, and configuration files, see the GitHub repository:</p>
-        <p style="margin: 5px 0 0 0;">
-          <a href="https://github.com/AravindhGoutham" target="_blank">
-            github.com/AravindhGoutham
-          </a>
-        </p>
-      </div>
+    <section id="one" class="tiles">
+
+      <!-- Flask Web App -->
+      <article>
+        <span class="image">
+          <img src="images/pic04.jpg" alt="Flask Web App" />
+        </span>
+        <header class="major">
+          <h3>Flask Web App</h3>
+          <p class="tile-description">Developed a GUI-based Flask application that simplifies device configurations. Uses Netmiko and NAPALM libraries for backend automation, replacing traditional CLI operations.</p>
+        </header>
+      </article>
+
+      <!-- Jinja2 -->
+      <article>
+        <span class="image">
+          <img src="images/pic05.jpg" alt="Jinja2" />
+        </span>
+        <header class="major">
+          <h3>Jinja2 Templating</h3>
+          <p class="tile-description">Dynamic device configs are generated using Jinja2 templates. Ensures consistency across environments, reducing manual error and improving deployment efficiency.</p>
+        </header>
+      </article>
+
+      <!-- Jenkins -->
+      <article>
+        <span class="image">
+          <img src="images/pic06.jpg" alt="Jenkins CI/CD" />
+        </span>
+        <header class="major">
+          <h3><a href="jenkins.html" class="link">Jenkins</a></h3>
+          <p class="tile-description">Integrated Jenkins for CI/CD. Every GitHub push triggers testing, version control, and automated deployments. Click to view detailed Jenkins pipeline setup →</p>
+        </header>
+      </article>
+
+      <!-- Monitoring -->
+      <article>
+        <span class="image">
+          <img src="images/pic07.jpg" alt="Monitoring" />
+        </span>
+        <header class="major">
+          <h3>Monitoring</h3>
+          <p class="tile-description">Implemented SNMP-based monitoring with Prometheus and Grafana. Dashboards visualize performance metrics and traffic in real time.</p>
+        </header>
+      </article>
+
+      <!-- Troubleshooting -->
+      <article>
+        <span class="image">
+          <img src="images/pic08.jpg" alt="Troubleshooting Automation" />
+        </span>
+        <header class="major">
+          <h3>Troubleshooting</h3>
+          <p class="tile-description">Created automated scripts to fetch and diff configs across devices. Helps quickly detect anomalies and configuration drifts.</p>
+        </header>
+      </article>
+
+      <!-- Netconf -->
+      <article>
+        <span class="image">
+          <img src="images/pic09.jpg" alt="NETCONF" />
+        </span>
+        <header class="major">
+          <h3>NETCONF</h3>
+          <p class="tile-description">Used NETCONF to manage network devices over a secure XML-based interface, allowing configuration validation and rollback.</p>
+        </header>
+      </article>
+
+    </section>
+
+    <!-- Reference Section -->
+    <section class="inner" style="padding: 3em 2em;">
+      <header class="major"><h2>Reference</h2></header>
+      <p style="line-height: 1.6; font-size: 0.95em;">
+        For source code, automation scripts, and configuration files, see the GitHub repository:<br>
+        <a href="https://github.com/AravindhGoutham" target="_blank">github.com/AravindhGoutham</a>
+      </p>
+    </section>
+  </div>
+
 </div>
 
 <!-- Scripts -->
